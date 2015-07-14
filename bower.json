@@ -46,7 +46,8 @@
     "angular-ui-router-styles": "~0.0.5",
     "ng-transloadit": "*",
     "blueimp-gallery": "~2.15.2",
-    "angular-mocks": "latest"
+    "angular-mocks": "latest",
+    "pace": "latest"
   },
   "resolutions": {
     "angular": ">=1.2.x"

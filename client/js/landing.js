@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
 	// Highlight the top nav as scrolling
 	$('body').scrollspy({
 		target: '.navbar-fixed-top',
@@ -14,8 +13,5 @@ $(document).ready(function () {
 		}, 500);
 		event.preventDefault();
 	});
-
+	new WOW().init();
 });
-
-// Activate WOW.js plugin for animation on scrol
-new WOW().init();

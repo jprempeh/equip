@@ -1,19 +1,35 @@
 function config($stateProvider, $urlRouterProvider) {
 	// Add CSS for main app (index/login/register) here
-	$urlRouterProvider.otherwise('/index');
+	$urlRouterProvider.otherwise('/landing');
 	$stateProvider
 		.state('landing', {
-			url:'/landing',
-			templateUrl: '/landing.html'
+			url: '/landing',
+			templateUrl: '/landing.html',
+			resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
+				loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+					// you can lazy load files for an existing module
+					return $ocLazyLoad.load([
+						'bower_components/jquery/dist/jquery.min.js',
+						'bower_components/pace/pace.min.js',
+						'bower_components/bootstrap/dist/js/bootstrap.min.js',
+						'bower_components/classie/classie.js',
+						'js/cbpAnimatedHeader.js',
+						'bower_components/WOW/dist/wow.min.js',
+						'js/landing.js'
+					], {
+						cache: false
+					});
+				}]
+			}
 		})
 		.state('login', {
 			url:'/login',
-			templateUrl: '/login.html',
+			templateUrl: 'login.html',
 			controller: 'LoginCtrl as userLogin'
 		})
 		.state('register', {
 			url:'/register',
-			templateUrl: '/register.html',
+			templateUrl: 'register.html',
 			controller: 'RegisterCtrl as userRegister'
 		})
 		.state('index', {
@@ -99,16 +115,16 @@ angular
 	// constant variables are available throughout app
   .constant('refUrl', 'https://mksequip.firebaseIO.com')
 	.config(config)
-	.run(function($rootScope, $state, $location, User) {
-		$rootScope.$state = $state;
- 		$rootScope.$on('$stateChangeStart', function (evt, next, current) {
-   		if (next && next.authenticate && !User.isAuth()) {
- 				evt.preventDefault();
- 				$rootScope.$evalAsync(function() {
- 				  $location.path('/landing');
- 				});
-   		}
- 		});
-	});
+	//.run(function($rootScope, $state, $location, User) {
+	//	$rootScope.$state = $state;
+ 	//	$rootScope.$on('$stateChangeStart', function (evt, next, current) {
+   //		if (next && next.authenticate && !User.isAuth()) {
+ 	//			evt.preventDefault();
+ 	//			$rootScope.$evalAsync(function() {
+ 	//			  $location.path('/landing');
+ 	//			});
+   //		}
+ 	//	});
+	//});
 
 

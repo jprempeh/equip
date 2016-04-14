@@ -31,14 +31,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
-    browserify: {
-      main: {
-        src: './client/components/documents/documents.jq.js',
-        dest: './client/components/documents/documents.compiled.js'
-      }
-    },
-
     // Testing
 
     jshint: {
@@ -74,13 +66,6 @@ module.exports = function(grunt) {
 
     // Watching
     watch: {
-      karma: {
-        // run these tasks when these files change
-        files: [
-          'test/unit/*.js'
-        ],
-        tasks: ['karma']
-      },
       scripts: {
         files: [
           'client/js/*.js',
@@ -153,7 +138,6 @@ module.exports = function(grunt) {
     nodemon.stdout.pipe(process.stdout);
     nodemon.stderr.pipe(process.stderr);
 
-    grunt.task.run([ 'watch' ]);
 
   });
 
@@ -182,7 +166,6 @@ module.exports = function(grunt) {
 
 
   grunt.registerTask('build', [
-    'browserify',
     'concat',
     'uglify',
     'cssmin'

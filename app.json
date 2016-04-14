@@ -1,0 +1,23 @@
+{
+  "name": "equip",
+  "scripts": {
+  },
+  "env": {
+    "TRANSLOADIT": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

@@ -5,7 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "test": "echo testing!!!; grunt unit-test",
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
     "postinstall": "echo postinstall time; ./node_modules/grunt-cli/bin/grunt build-deploy && ./node_modules/bower/bin/bower install"
   },
   "repository": {

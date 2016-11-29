@@ -10,7 +10,7 @@ function config($stateProvider, $urlRouterProvider) {
 					// you can lazy load files for an existing module
 					return $ocLazyLoad.load([
 						'bower_components/jquery/dist/jquery.min.js',
-						'bower_components/pace/pace.min.js',
+						//'bower_components/pace/pace.min.js',
 						'bower_components/bootstrap/dist/js/bootstrap.min.js',
 						'bower_components/classie/classie.js',
 						'js/cbpAnimatedHeader.js',

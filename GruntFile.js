@@ -1,6 +1,54 @@
+'use strict';
+
 module.exports = function(grunt) {
+  require('load-grunt-tasks')(grunt);
+  require('time-grunt')(grunt);
 
   grunt.initConfig({
+
+    connect: {
+      options: {
+        port: 4000,
+        host: 'localhost',
+        livereload: 35729
+      },
+      livereload: {
+        options: {
+          open: true,
+          middleware: function(connect) {
+            return [
+              connect().static('app')
+            ];
+          }
+        }
+      }
+    },
+    watch: {
+      options: {
+        livereload: true
+      },
+      files: [
+        'client/**',
+        'server/**',
+        'test/**'
+      ],
+      tasks: ''
+    },
+    express: {
+      all: {
+        options: {
+          port: 3000,
+          hostname: 'localhost',
+          bases: [__dirname + '/client'],
+          livereload: true
+        }
+      }
+    },
+    open: {
+      all: {
+        path: 'http://localhost:3000'
+      }
+    },
 
     pkg: grunt.file.readJSON('package.json'),
 
@@ -63,26 +111,6 @@ module.exports = function(grunt) {
         background: true
       }
     },
-
-    // Watching
-    watch: {
-      scripts: {
-        files: [
-          'client/js/*.js',
-          'client/components/**/*.js'
-        ],
-        tasks: [
-          'concat',
-          'uglify',
-          'karma'
-        ]
-      },
-      css: {
-        files: 'client/css/*.css',
-        tasks: ['cssmin']
-      }
-    },
-
     nodemon: {
       dev: {
         script: 'server/server.js'
@@ -116,16 +144,20 @@ module.exports = function(grunt) {
           stderr: true
         }
       }
-    },
+    }
   });
 
   // Loads all grunt tasks
-  require('load-grunt-tasks')(grunt);
+
 
   ////////////////////////////////////////////////////
   // Primary grunt tasks
   ////////////////////////////////////////////////////
-
+  grunt.registerTask('start', [
+    'express',
+    'open',
+    'watch'
+  ]);
   grunt.registerTask('serve', function (target) {
 
     grunt.task.run([ 'build' ]);

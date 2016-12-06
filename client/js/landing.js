@@ -5,13 +5,12 @@ $(document).ready(function () {
 		offset: 80
 	})
 
-	// Page scrolling feature
-	$('a.page-scroll').bind('click', function(event) {
-		var link = $(this);
-		$('html, body').stop().animate({
+	$(document).on('click', 'a.page-scroll', function(event) {
+    event.preventDefault();
+    var link = $(this);
+    $('html, body').stop().animate({
 			scrollTop: $(link.attr('href')).offset().top - 70
 		}, 500);
-		event.preventDefault();
 	});
 	new WOW().init();
 });

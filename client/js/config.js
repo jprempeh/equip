@@ -8,15 +8,7 @@ function config($stateProvider, $urlRouterProvider) {
 			resolve: { // Any property in resolve should return a promise and is executed before the view is loaded
 				loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
 					// you can lazy load files for an existing module
-					return $ocLazyLoad.load([
-						'bower_components/jquery/dist/jquery.min.js',
-						'bower_components/PACE/pace.min.js',
-						'bower_components/bootstrap/dist/js/bootstrap.min.js',
-						'bower_components/classie/classie.js',
-						'js/cbpAnimatedHeader.js',
-						'bower_components/WOW/dist/wow.min.js',
-						'js/landing.js'
-					], {
+					return $ocLazyLoad.load([], {
 						cache: false
 					});
 				}]
@@ -112,19 +104,7 @@ function config($stateProvider, $urlRouterProvider) {
 }
 angular
 	.module('equip')
-	// constant variables are available throughout app
   .constant('refUrl', 'https://mksequip.firebaseIO.com')
-	.config(config)
-	//.run(function($rootScope, $state, $location, User) {
-	//	$rootScope.$state = $state;
- 	//	$rootScope.$on('$stateChangeStart', function (evt, next, current) {
-   //		if (next && next.authenticate && !User.isAuth()) {
- 	//			evt.preventDefault();
- 	//			$rootScope.$evalAsync(function() {
- 	//			  $location.path('/landing');
- 	//			});
-   //		}
- 	//	});
-	//});
+	.config(config);
 
 
